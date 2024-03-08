@@ -102,6 +102,9 @@ class ToDoApp(tk.Toplevel):
         self.resizable(False, False)
         self.title("To-Do Application")
 
+        # Initialize variable to store reference to current open window
+        self.current_window = None
+
         """Display a background image
         for the to-do application window"""
         self.background_img = ImageTk.PhotoImage(Image.open("images/bkgrnd.jpeg"))
@@ -228,6 +231,18 @@ class ToDoApp(tk.Toplevel):
         """Method for displaying the Timer window"""
         timer_window = TimerApp(self)
 
+    def todo_command(self):
+        """Method for displaying the To-Do List window"""
+        # Close or hide the previous window if it exists
+        if self.current_window:
+            self.current_window.destroy()  # Destroy the previous window
+            # Or use self.current_window.withdraw() to hide the window instead of destroying it
+
+        # Open the new To-Do List window
+        todo_window = ToDoApp(self)
+        # Store reference to the current window
+        self.current_window = todo_window
+
 
 class TimerApp(tk.Toplevel):
     def __init__(self, master):
@@ -235,6 +250,9 @@ class TimerApp(tk.Toplevel):
 
         self.title("Timer Countdown")
         self.geometry("500x500")
+
+        # Initialize variable to store reference to current open window
+        self.current_window = None
 
         # Background image for Timer
         self.background_image = Image.open("images/IMG_5141.JPG")
@@ -279,7 +297,15 @@ class TimerApp(tk.Toplevel):
 
     def todo_command(self):
         """Method for displaying the To-Do List window"""
+        # Close or hide the previous window if it exists
+        if self.current_window:
+            self.current_window.destroy()  # Destroy the previous window
+            # Or use self.current_window.withdraw() to hide the window instead of destroying it
+
+        # Open the new To-Do List window
         todo_window = ToDoApp(self)
+        # Store reference to the current window
+        self.current_window = todo_window
 
     # Function of Timer button
     def myClick(self):  # Command for inputted data for the Timer
@@ -313,4 +339,3 @@ class TimerApp(tk.Toplevel):
 if __name__ == "__main__":
     startup = MainWindow()
     startup.mainloop()
-
