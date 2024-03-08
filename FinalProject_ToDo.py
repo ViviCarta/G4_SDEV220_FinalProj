@@ -1,6 +1,7 @@
 """This is the to-do application window
 that is linked to the main window"""
 
+# Import the necessary modules
 from tkinter import *
 from tkinter import messagebox
 import customtkinter as ctk
@@ -15,6 +16,7 @@ class ToDoApp(ctk.CTk):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
         self.geometry("1050x900")
         self.resizable(False, False)
         self.title("To-Do Application")
@@ -31,15 +33,21 @@ class ToDoApp(ctk.CTk):
         self.back_button = ctk.CTkButton(self, text="Main", width=110, corner_radius=6,
                                          font=ctk.CTkFont("Arial", size=20), fg_color="black",
                                          hover_color="gray", text_color="white")
-        self.back_button.place(x=40, y=40)
+        self.back_button.place(x=300, y=830)
 
         """Create button that will
         navigate to timer application 
         outside the main frame"""
+
         self.timer_button = ctk.CTkButton(self, text="Timer", width=110, corner_radius=6,
                                           font=ctk.CTkFont("Arial", size=20), fg_color="black",
                                           hover_color="gray", text_color="white")
-        self.timer_button.place(x=880, y=830)
+        self.timer_button.place(x=700, y=830)
+
+        # self.timer_button = ctk.CTkButton(self, text="Timer", width=110, corner_radius=6,
+        # font=ctk.CTkFont("Arial", size=20), fg_color="black",
+        # hover_color="gray", text_color="white")
+        # self.timer_button.place(x=880, y=810)
 
         """Create database or connect 
         to existing one"""
@@ -55,8 +63,7 @@ class ToDoApp(ctk.CTk):
                                        fg_color="white", bg_color="black", corner_radius=30)
         self.main_frame.place(relx=0.5, rely=0.5, anchor=CENTER)
 
-        """Add labels for main header 
-        and a subhead"""
+        """Add labels for main header"""
         self.heading = ctk.CTkLabel(self.main_frame, text="To-Do List", font=ctk.CTkFont("Arial", size=48))
         self.heading.place(x=290, y=45)
 
