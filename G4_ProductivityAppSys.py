@@ -95,7 +95,7 @@ class ToDoApp(tk.Toplevel):
 
         self.timer_button = ctk.CTkButton(self, text="Timer", width=110, corner_radius=6,
                                           font=ctk.CTkFont("Arial", size=20), fg_color="black",
-                                          hover_color="gray", text_color="white", command=self.timer_command())
+                                          hover_color="gray", text_color="white", command=self.timer_command)
         self.timer_button.place(x=480, y=830)
 
         """Create database or connect 
@@ -294,3 +294,4 @@ class TimerApp(tk.Toplevel):
 if __name__ == "__main__":
     startup = MainWindow()
     startup.mainloop()
+
