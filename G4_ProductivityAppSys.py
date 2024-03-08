@@ -27,6 +27,9 @@ class MainWindow(ctk.CTk):
         self.resizable(False, False)  # Sets the window to be non-resizable
         self.title("Productivity App System")
 
+        # Initialize variable to store reference to current open window
+        self.current_window = None
+
         """Displays a background image for the main window"""
         self.background_img = ImageTk.PhotoImage(Image.open("images/main.jpeg"))
         self.background_label = Label(self, image=self.background_img, bg="white")
@@ -66,11 +69,27 @@ class MainWindow(ctk.CTk):
 
     def todo_command(self):
         """Method for displaying the To-Do List window"""
+        # Close or hide the previous window if it exists
+        if self.current_window:
+            self.current_window.destroy()  # Destroy the previous window
+            # Or use self.current_window.withdraw() to hide the window instead of destroying it
+
+        # Open the new To-Do List window
         todo_window = ToDoApp(self)
+        # Store reference to the current window
+        self.current_window = todo_window
 
     def timer_command(self):
         """Method for displaying the Timer window"""
+        # Close or hide the previous window if it exists
+        if self.current_window:
+            self.current_window.destroy()  # Destroy the previous window
+            # Or use self.current_window.withdraw() to hide the window instead of destroying it
+
+        # Open the new Timer window
         timer_window = TimerApp(self)
+        # Store reference to the current window
+        self.current_window = timer_window
 
 
 class ToDoApp(tk.Toplevel):
